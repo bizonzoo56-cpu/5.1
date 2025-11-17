@@ -9,3 +9,6 @@ Janusz 40
 Krzysztof 20
 Janusz 40
 Marek 40
+Krzysztof 20
+Janusz 40
+Andrzej 30
