@@ -7,7 +7,7 @@ class Main {
             Service s = new Service();
             Scanner scanner = new Scanner(System.in);
 
-            System.out.print("Podaj imię: ");
+            System.out.print("Podaj Imię: ");
             String name = scanner.nextLine().trim();
 
             System.out.print("Podaj wiek: ");
