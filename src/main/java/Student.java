@@ -16,9 +16,18 @@ public class Student {
   }
 
   public static Student Parse(String str) {
-    String[] data = str.split(" ");
+    str = str.trim();
+    if(str.isEmpty()) 
+      return null;
+    
+    String[] data = str.split("\\s+");
     if(data.length != 2) 
-      return new Student("Parse Error", -1);
-    return new Student(data[0], Integer.parseInt(data[1]));
+      return new Student("ParseError", -1);
+    
+    try {
+      return new Student(data[0], Integer.parseInt(data[1]));
+    } catch (NumberFormatException e) {
+      return new Student("ParseError", -1);
+    }
   }
 }

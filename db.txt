@@ -12,3 +12,17 @@ Marek 40
 Krzysztof 20
 Janusz 40
 Andrzej 30
+Krzysztof 20
+Janusz 40
+Andrzej 30
+Krzysztof 20
+Janusz 40
+Andrzej 30
+mateusz 20
+wiola  15
+WIOLA 20
+Zbigniew  23
+mateusz 23
+zbigniew 15
+julia 22
+kuba 12
