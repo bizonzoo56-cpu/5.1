@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -14,6 +15,7 @@ public class Main {
             System.out.println("\n=== MENU ===");
             System.out.println("1 - Dodaj studenta");
             System.out.println("2 - Wyświetl listę studentów");
+            System.out.println("3 - Wyszukaj studenta po imieniu");
             System.out.println("0 - Wyjście");
             System.out.print("Wybierz opcję: ");
 
@@ -68,10 +70,38 @@ public class Main {
 
                 case 2: {
                     try {
-                        var students = s.getStudents();
+                        List<Student> students = s.getStudents();
                         System.out.println("\n--- Lista studentów ---");
                         for (Student st : students) {
                             System.out.println(st.toString());
+                        }
+                    } catch (IOException e) {
+                        System.out.println("Błąd odczytu: " + e.getMessage());
+                    }
+                    break;
+                }
+
+                case 3: {
+                    System.out.print("Wpisz imię do wyszukania: ");
+                    String searchName = scanner.nextLine().trim();
+
+                    if (searchName.isEmpty()) {
+                        System.out.println("Imię nie może być puste!");
+                        break;
+                    }
+
+                    try {
+                        List<Student> students = s.getStudents();
+                        boolean found = false;
+                        System.out.println("\n--- Wyniki wyszukiwania ---");
+                        for (Student st : students) {
+                            if (st.getName().equalsIgnoreCase(searchName)) {
+                                System.out.println(st.toString());
+                                found = true;
+                            }
+                        }
+                        if (!found) {
+                            System.out.println("Nie znaleziono studenta o imieniu: " + searchName);
                         }
                     } catch (IOException e) {
                         System.out.println("Błąd odczytu: " + e.getMessage());
