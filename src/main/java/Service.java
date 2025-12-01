@@ -1,39 +1,39 @@
-import java.util.Collection;
+import java.io.*;
 import java.util.ArrayList;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.util.List;
+
 public class Service {
 
-  public void addStudent(Student student ) throws IOException {
-    var f = new FileWriter("db.txt", true);
-    var b = new BufferedWriter(f);
-    b.append(student.ToString());
-    b.newLine();
-    b.close();
-  }
+    private final String fileName = "students.txt";
 
-  public Collection<Student> getStudents() throws IOException {
-    var ret = new ArrayList<Student>();
-    var f = new FileReader("db.txt");
-    var reader = new BufferedReader(f);
-    String line = "";
-    while (true) {
-      line = reader.readLine();
-      if(line == null)
-        break;
-      Student student = Student.Parse(line);
-      if(student != null) {
-        ret.add(student);
-      }
+    public void addStudent(Student st) throws IOException {
+        BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true));
+        writer.write(st.getName() + ";" + st.getAge() + ";" + st.getDateOfBirth());
+        writer.newLine();
+        writer.close();
     }
-    reader.close();
-    return ret;
-  }
 
-  public Student findStudentByName(String name) {
-    return null;
-  }
+    public List<Student> getStudents() throws IOException {
+        List<Student> list = new ArrayList<>();
+
+        File file = new File(fileName);
+        if (!file.exists()) return list;
+
+        BufferedReader reader = new BufferedReader(new FileReader(file));
+        String line;
+
+        while ((line = reader.readLine()) != null) {
+            String[] parts = line.split(";");
+
+            if (parts.length == 3) {
+                String name = parts[0];
+                int age = Integer.parseInt(parts[1]);
+                String dob = parts[2];
+                list.add(new Student(name, age, dob));
+            }
+        }
+
+        reader.close();
+        return list;
+    }
 }

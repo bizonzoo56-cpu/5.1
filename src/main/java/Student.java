@@ -1,33 +1,27 @@
 public class Student {
 
-  private String Name;
-  private int Age;
+    private String name;
+    private int age;
+    private String dateOfBirth;
 
-  public Student(String name, int age ) {
-    Name = name;
-    Age = age;
-  }
-
-  public String GetName() {return Name;}
-  public int GetAge() {return Age;}
-
-  public String ToString() {
-    return Name + " " + Integer.toString(Age);
-  }
-
-  public static Student Parse(String str) {
-    str = str.trim();
-    if(str.isEmpty()) 
-      return null;
-    
-    String[] data = str.split("\\s+");
-    if(data.length != 2) 
-      return new Student("ParseError", -1);
-    
-    try {
-      return new Student(data[0], Integer.parseInt(data[1]));
-    } catch (NumberFormatException e) {
-      return new Student("ParseError", -1);
+    public Student(String name, int age, String dateOfBirth) {
+        this.name = name;
+        this.age = age;
+        this.dateOfBirth = dateOfBirth;
     }
-  }
+
+    public String getName() { return name; }
+
+    public int getAge() { return age; }
+
+    public String getDateOfBirth() { return dateOfBirth; }
+
+    public static boolean isValidDate(String date) {
+        return date.matches("^\\d{4}-\\d{2}-\\d{2}$");
+    }
+
+    @Override
+    public String toString() {
+        return "Student: " + name + ", wiek: " + age + ", data urodzenia: " + dateOfBirth;
+    }
 }
