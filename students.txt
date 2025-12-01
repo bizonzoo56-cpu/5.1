@@ -1,4 +1,2 @@
-mateusz;20;2004-07-17
-klaudiusz;15;2010-01-02
-zbyszek;15;2022-02-15
-mateusz;40;0200-02-22
+ola;kud;20;2025-02-50
+mateusz;klawisz;20;2010-20-25
