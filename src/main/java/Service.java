@@ -36,4 +36,18 @@ public class Service {
         reader.close();
         return list;
     }
+
+    
+    public List<Student> findStudentsByName(String name) throws IOException {
+        List<Student> all = getStudents();
+        List<Student> result = new ArrayList<>();
+
+        for (Student st : all) {
+            if (st.getName().equalsIgnoreCase(name)) {
+                result.add(st);
+            }
+        }
+
+        return result;
+    }
 }
